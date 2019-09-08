@@ -1,0 +1,25 @@
+{
+  "name": "intl-sommelier-community",
+  "version": "0.0.1",
+  "description": "The website for the Intl. Sommelier Community UK",
+  "main": "keystone.js",
+  "private": true,
+  "dependencies": {
+    "connect-mongo": "^3.0.0",
+    "dotenv": "^8.1.0",
+    "keystone": "^4.2.1",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.12.0",
+    "node-sass-middleware": "^0.11.0",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node keystonejs"
+  },
+  "keywords": [
+    "keystonejs"
+  ],
+  "author": "eyrewiut",
+  "license": "MIT"
+}

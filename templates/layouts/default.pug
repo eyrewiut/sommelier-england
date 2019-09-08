@@ -1,0 +1,63 @@
+include ../mixins/flash-messages
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		title= `${pageTitle} - ${brand}`
+		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+
+		//- Import site styling
+		link(rel="stylesheet", href="/styles/site.css")
+
+		//- If there is a user logged in who can acces the admin panel, link the css to style the panel
+		if user && user.canAccessKeystone
+			link(rel="stylesheet", href="/keystone/styles/content/editor.min.css")
+		
+		//- Add spare blocks for use with view-specific HEAD tags and style LINKs
+		block css
+		block head
+	body
+		header
+			nav
+				.nav-inner
+					.nav-item.nav-brand
+						a(href="/")= brand
+					.nav-burger
+						span
+						span
+						span
+			.nav-menu
+				each link in navLinks
+					a(href=link.href class=(section == link.key ? "active" : null))= link.label
+		block intro
+		+flash-messages(messages)
+		//- Main content
+		.page-container: block content
+		//- Include a global footer
+		footer
+			nav
+				.nav-inner
+					.nav-item#copyright: span= `© ${brand} ${(new Date()).getFullYear()}`
+					if user
+						if user.canAccessKeystone
+							.nav-item: a#dashboard(href="/keystone") Dashboard
+						.nav-item: a#sign-out(href="/keystone/signout") Logout
+					else
+						.nav-item: a#sign-in(href="/keystone/signin") Login
+
+		//- Add jquery
+		script(src="/scripts/jquery-1.11.3.min.js")
+
+		//- If there is a user logged in who can access the admin console, add the script to support it
+		if user && user.canAccessKeystone
+			script(src="/keystone/js/content/editor.js")
+
+		//- Add a spare block for view-specific javascript
+		block js
+		script.
+			$(".nav-burger").click(function() {
+				$(".nav-menu").toggleClass("active");
+			})
+
