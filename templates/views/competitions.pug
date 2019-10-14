@@ -1,0 +1,72 @@
+extends ../layouts/default
+
+block content
+	.header-image(style="background: url(/images/competitions_header.jpg)")
+	section
+		h2.section-header Competitions
+		p Here you can see winners for competitions organized or hosted by us.
+	hr.section-seperator
+	section
+		h2.section-header Previous winners
+		div.tabs-wrapper
+			ul.tabs
+				li: a(href="javascript:showTab('best-sommelier-uk')")= "Best Sommelier UK"
+				li: a(href="javascript:showTab('asi-certificate')")= "ASI Certificate"
+				li: a(href="javascript:showTab('world')")= "World"
+				li: a(href="javascript:showTab('europe')")= "Europe"
+				li: a(href="javascript:showTab('americas')")= "Americas"
+				li: a(href="javascript:showTab('asia-oceana')")= "Asia & Oceana"
+			div.tab-content#best-sommelier-uk.active
+				h2.section-header= "Best Sommelier UK"
+				each winner in winners
+					if (winner.competition == "Best Sommelier UK" ? true : false)
+						ul.winners: li
+							span= winner._.year.format("YYYY")
+							span= `${winner.name.first} ${winner.name.last}`
+
+			div.tab-content#asi-certificate
+				h2.section-header= "ASI Certificate"
+				each winner in winners
+					if (winner.competition == "ASI Certificate" ? true : false)
+						ul.winners: li
+							span= winner._.year.format("YYYY")
+							span= `${winner.name.first} ${winner.name.last}`
+			div.tab-content#world
+				h2.section-header= "World"
+				each winner in winners
+					if (winner.competition == "World" ? true : false)
+						ul.winners: li
+							span= winner._.year.format("YYYY")
+							span= `${winner.name.first} ${winner.name.last}`
+			div.tab-content#europe
+				h2.section-header= "Europe"
+				each winner in winners
+					if (winner.competition == "Europe" ? true : false)
+						ul.winners: li
+							span= winner._.year.format("YYYY")
+							span= `${winner.name.first} ${winner.name.last}`
+			div.tab-content#americas
+				h2.section-header= "Americas"
+				each winner in winners
+					if (winner.competition == "Americas" ? true : false)
+						ul.winners: li
+							span= winner._.year.format("YYYY")
+							span= `${winner.name.first} ${winner.name.last}`
+			div.tab-content#asia-oceana
+				h2.section-header= "Asia & Oceana"
+				each winner in winners
+					if (winner.competition == "Asia & Oceana" ? true : false)
+						ul.winners: li
+							span= winner._.year.format("YYYY")
+							span= `${winner.name.first} ${winner.name.last}`
+
+block js
+	script.
+		function showTab(tab) {
+			//Hide all tabs
+			$(".tab-content").each(function() {
+				$(this).removeClass("active")
+			});
+			//Display the new tab
+			$(`#${tab}`).addClass("active")
+		}

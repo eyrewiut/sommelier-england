@@ -13,4 +13,5 @@ var routes = {
 //Export & Setup route bindings
 exports = module.exports = function(app) {
 	app.all("/", routes.views.index);
+	app.get("/competitions", routes.views.competitions);
 };
