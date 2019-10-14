@@ -1,0 +1,45 @@
+extends ../layouts/default
+
+block content
+	.header-image(style="background: url(/images/grapes.jpg)")
+	section
+		h2.section-header Home
+		p Our organisation is promoting young people and other aspiring people who want to join the Sommelier world, welcome to our website.
+	hr.section-seperator
+	section
+		h2.section-header Who are we?
+		p
+			| Our organisation is promoting the sommelier profession to new and aspiring professionals.
+			| We are lucky to have known Gerard Basset as a source of inspiration in our passion.
+			| Today many talented Sommeliers are based inside and outside of the UK who come to learn and develop here. 
+		br
+		p
+			| England is a unique platform for learning about wine and spirits from around the world and it gives us a chance to exercise and share our passion.
+			| We also have Wine lovers, and teams of Restaurant staff, Barmen and Chefs from all over the world.
+			| Our President Nicolas Clerc and Vice President Eric Zwiebel with the Technical committee make sure about the organisation of competitions is run smoothly.
+			| We are running The UK Best Sommelier competition and host exams for the ASI Certificate.
+	hr.section-seperator
+	section
+		h2.section-header ASI Competition
+		p We are members of the ASI Competition and can organise selections for sommelier to move on to the next step at an international level.
+		ul#ASIregions
+			li: h3= "Continental"
+			li: p= "Europe and Africa"
+			li: p= "America"
+			li: p= "Asia & Oceania"
+			li: h3= "World"
+			li: p= "ASI Best Sommelier of the World"
+	hr.section-seperator
+	section
+		h2.section-header Contact Us
+		if enquirySubmitted
+			h3 Thanks for getting in touch with us!
+		else
+			form#ContactForm(method="post")
+				input(type="hidden", name="action", value="/")
+				.form-group(class=validationErrors.name ? "has-error" : null)
+					input.form-control(type="text", name="name.first", value=formData["name.first"], placeholder="First Name", required)
+					input.form-control(type="text", name="name.last", value=formData["name.last"], placeholder="Last Name", required)
+				.form-group: input(type="email", name="email", value=formData.email, placeholder="Email Address", required)
+				.form-group: textarea(name="message", rows="5", placeholder="Please write your message here", required)= formData.message
+				.form-group: button.btn(type="submit") Submit

@@ -34,7 +34,7 @@ html(lang="en")
 		block intro
 		+flash-messages(messages)
 		//- Main content
-		.page-container: block content
+		block content
 		//- Include a global footer
 		footer
 			nav
@@ -48,7 +48,7 @@ html(lang="en")
 						.nav-item: a#sign-in(href="/keystone/signin") Login
 
 		//- Add jquery
-		script(src="/scripts/jquery-1.11.3.min.js")
+		script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js", integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=", crossorigin="anonymous")
 
 		//- If there is a user logged in who can access the admin console, add the script to support it
 		if user && user.canAccessKeystone

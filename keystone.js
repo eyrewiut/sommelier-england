@@ -3,8 +3,8 @@ const keystone = require("keystone");
 
 keystone.init({
 	//Set project name and brand
-	"name": "Intl. Sommelier Community UK",
-	"brand": "International Community of Sommelier UK",
+	"name": "National UK Sommelier Organisation",
+	"brand": "National UK Sommelier Organisation",
 
 	//Generate sass files from css and set static directory
 	"sass": "public",

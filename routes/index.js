@@ -12,5 +12,5 @@ var routes = {
 
 //Export & Setup route bindings
 exports = module.exports = function(app) {
-	app.get("/", routes.views.index);
+	app.all("/", routes.views.index);
 };

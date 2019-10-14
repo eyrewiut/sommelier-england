@@ -1,7 +1,8 @@
 body {
 	font-family: "Playfair Display", serif;
-	background-color: #f8f8f8;
+	background: #f8f8f8;
 	margin: 0; 
+	position: relative;
 }
 
 * {
@@ -27,7 +28,8 @@ nav {
 		padding: 0 200px;
 	}
 	.nav-inner {
-		display: flex;
+		display: inherit;
+		flex-direction: inherit;
 		align-items: stretch;
 		align-self: center;
 		flex-grow: 1;
@@ -58,7 +60,7 @@ nav {
 	width: 1.25rem;
 	margin-left: auto;
 	span {
-		background-color: currentColor;
+		background: currentColor;
 		display: block;
 		left: calc(50% - 8px);
 		position: absolute;
@@ -112,7 +114,7 @@ nav {
 		left: auto;
 		position: absolute;
 		top: 100px;
-		z-index: 999;
+		z-index: 6;
 	}
 	@media screen and (min-width: 1280px) {
 		right: 208px;
@@ -137,14 +139,236 @@ nav {
 	}
 }
 
+/*Add margin to the Footer*/
 footer {
-	margin-top: 130px;
+	text-align: center;
+	margin: 130px 0 0 0;
+	nav {
+		.nav-inner {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+	}
+	#copyright {
+		bottom: 5px;
+	}
 }
 
-#sign-in, #sign-out, #dashboard {
-    padding: 10px;
+.btn, #sign-in, #sign-out, #dashboard {
+	padding: 10px;
 	color: #fff;
-	border-radius: 5px;
 	background: #BA2C46;
+	border: none;
+}
+#sign-in, #sign-out, #dashboard {
+	border-radius: 5px;
+	margin: 3px;
 }
 
+/*Header Image*/
+.header-image {
+	width: 100%;
+	//height: calc(100vh - 100px);
+	display: none;
+	position: absolute;
+	background-size: cover !important;
+	z-index: -1;
+
+	/*Minimal support for iphone 5 and similar*/
+	@media screen and (min-width: 300px) {
+		height: 423.833px;
+		display: block;
+	}
+	/*Iphone 8 and similar*/
+	@media screen and (min-width: 375px) {
+		height: calc(300px + (2*69px));
+	}
+	/*Laptop*/
+	@media screen and (min-width: 1200px) {
+		height: calc(300px + (2*100px));
+	}
+	/*Desktop*/
+	@media screen and (min-width: 1800px) {
+		height: 699px;
+	}
+}
+
+/*Section styling*/
+section {
+	padding: 50px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border-bottom: 1px solid #e6e6e6;
+
+	text-align: center;
+	background: #fff;
+
+	/*Set specific styles for the first section*/
+	&:first-of-type {
+		border-top: 1px solid #e6e6e6;
+		
+		/*Minimal support for iphone 5 and similar*/
+		@media screen and (min-width: 300px) {
+			margin: 50px auto;
+		}
+		/*Iphone 8 and similar*/
+		@media screen and (min-width: 375px) {
+			height: 300px;
+			margin: 70px auto;
+		}
+		/*Laptop*/
+		@media screen and (min-width: 1200px) {
+			margin: 100px auto;
+		}
+		/*Desktop*/
+		@media screen and (min-width: 1800px) {
+			margin: 160px auto 0 auto;
+		}
+	}
+
+	/*Change to box-like sections on desktop*/
+	@media screen and (min-width: 1800px) {
+		padding: 130px;
+		margin: 0 auto;
+		width: 1520px;
+		min-height: 640px;
+		border: none;
+		p {
+			font-size: 18px;
+			margin: 0 100px;
+		}
+	}
+}
+
+/*Title in each section*/
+.section-header {
+	font-size: 24px;
+	font-weight: 300;
+	/*Underline*/
+	&::after {
+		content: "";
+		display: block;
+		position: relative;
+		height: 1px;
+		min-width: 100px;
+		max-width: 340px;
+		margin: 0 auto;
+
+		background: #000;
+
+		@media screen and (min-width: 1800px) {
+			width: 347px;
+		}
+	}
+}
+
+.section-seperator {
+	display: none; 
+	height: 100px;
+	width: 0;
+	border: 1px #000 dashed;
+	margin-top: 0;
+	margin-bottom: 0;
+	@media screen and (min-width: 1800px) {
+		display: block;
+	}
+}
+
+#ASIregions {
+	list-style: none;
+	padding: 0;
+}
+
+#ContactForm {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 640px;
+	.form-group {
+		display: flex;
+		justify-content: center;
+		* {
+			margin: 5px;
+			font-family: "Playfair Display", sans-serif;
+			font-size: 18px;
+		}
+		input, textarea {
+			flex-grow: 1;
+			padding: 8px 10px;
+			background: #f4f4f4;
+			font-weight: bold;
+			border-radius: 3px;
+			border: 2px solid #DADADA;
+		}
+		button.btn {
+			padding: 9px 23px;
+		}
+	}
+}
+
+/*Competitions Tabs*/
+.tabs {
+	list-style: none;
+	display: flex;
+	padding: 0;
+	justify-content: center;
+	margin: 0;
+	li {
+		padding: 5px 36px;
+		margin: 0 8px;
+		background: #F8F8F8;
+		border: solid #DADADA;
+		border-width: 2px 2px 0 2px;
+		border-radius: 3px 3px 0px 0px;
+		a {
+			color: #6B6B6B;
+			font-weight: boldd;
+		}
+	}
+}
+.tab-content {
+	display: none;
+	padding: 30px 0;
+	border: 2px solid #DADADA;
+	border-radius: 5px;
+	background: #FDFDFD;
+	min-height: 300px;
+	&.active {
+		display: block;
+	}
+}
+
+ul.winners {
+	list-style: none;
+	padding: 0;
+	margin: 0 140px;
+	li {
+		text-align: left;
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-template-rows: auto auto;
+		width: 400px;
+		margin-bottom: 10px;
+		span {
+			font-weight: bold;
+			align-self: end;
+			&:nth-of-type(1) {
+				font-size: 24px;
+			}
+			&:nth-of-type(2) {
+				text-align: right;
+			}
+		}
+		&::after {
+			content: "";
+			display: block;
+			position: relative;
+			height: 1px;	
+			width: 100%;
+			margin: 0 auto;
+			background: #000;
+			grid-column: span 2;
+		}
+	}
+}
