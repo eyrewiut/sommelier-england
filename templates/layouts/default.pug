@@ -6,7 +6,11 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		title= `${pageTitle} - ${brand}`
-		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+		meta(name="description", content=`${meta_description}`)
+		link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
+		link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
+		link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
+		link(rel="manifest" href="/site.webmanifest")
 
 		//- Import site styling
 		link(rel="stylesheet", href="/styles/site.css")
@@ -24,13 +28,13 @@ html(lang="en")
 				.nav-inner
 					.nav-item.nav-brand
 						a(href="/")= brand
-					.nav-burger
+					.nav-burger(data-target="#header-dropdown")
 						span
 						span
 						span
-			.nav-menu
+			.nav-menu#header-dropdown
 				each link in navLinks
-					a(href=link.href class=(section == link.key ? "active" : null))= link.label
+					a(href=link.href class=(section == link.key ? "active" : null) ondragstart="return false;")= link.label
 		block intro
 		+flash-messages(messages)
 		//- Main content
@@ -42,14 +46,12 @@ html(lang="en")
 					.nav-item#copyright: span= `© ${brand} ${(new Date()).getFullYear()}`
 					if user
 						if user.canAccessKeystone
-							.nav-item: a#dashboard(href="/keystone") Dashboard
-						.nav-item: a#sign-out(href="/keystone/signout") Logout
+							.nav-item: a.btn(href="/keystone") Dashboard
+						.nav-item: a.btn(href="/keystone/signout") Logout
 					else
-						.nav-item: a#sign-in(href="/keystone/signin") Login
-
+						.nav-item: a.btn(href="/keystone/signin") Login
 		//- Add jquery
-		script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js", integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=", crossorigin="anonymous")
-
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous")
 		//- If there is a user logged in who can access the admin console, add the script to support it
 		if user && user.canAccessKeystone
 			script(src="/keystone/js/content/editor.js")
@@ -57,7 +59,16 @@ html(lang="en")
 		//- Add a spare block for view-specific javascript
 		block js
 		script.
-			$(".nav-burger").click(function() {
-				$(".nav-menu").toggleClass("active");
-			})
-
+			$(document).ready(function() {
+				//- Handles the navigation menu
+				$(document).click(function(e) {
+					$(".nav-burger").each(function() {
+						var data_target = $($(this).data("target"));
+						if (e.target == this || $(e.target).parent()[0] == $(this)[0]) {
+							data_target.toggleClass("active");
+						} else if (data_target.hasClass("active")) {
+							data_target.removeClass("active");
+						}
+					});
+				});
+			});

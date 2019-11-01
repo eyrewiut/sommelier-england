@@ -1,0 +1,12 @@
+<svg width="50" height="186" viewBox="0 0 50 186" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 184L50 56.6C50 51.2981 45.7019 47 40.4 47C36.8654 47 34 44.1346 34 40.6V2C34 0.89543 33.1046 0 32 0L19 0C17.8954 0 17 0.89543 17 2L17 40.2C17 43.9555 13.9555 47 10.2 47C4.5667 47 0 51.5667 0 57.2L0 184C0 185.105 0.895432 186 2 186H48C49.1046 186 50 185.105 50 184Z" fill="#1E2036"/>
+<path d="M38 58C38 57.4477 38.4477 57 39 57H43C44.6569 57 46 58.3431 46 60V105C46 105.552 45.5523 106 45 106H39C38.4477 106 38 105.552 38 105V58Z" fill="#F3F3F3"/>
+<path d="M17 2C17 0.895431 17.8954 0 19 0L32 0C33.1046 0 34 0.895431 34 2V12L17 12V2Z" fill="#383838" fill-opacity="0.68"/>
+<ellipse cx="31.5" cy="4" rx="1" ry="2" fill="white" fill-opacity="0.8"/>
+<path d="M17.0001 6.49976L33.9999 7.49546L33.9999 8.49546L17 7.49975L17.0001 6.49976Z" fill="black" fill-opacity="0.28"/>
+<path d="M17.0001 4.49976L33.9998 5.49546L33.9998 6.49546L17 5.49975L17.0001 4.49976Z" fill="black" fill-opacity="0.28"/>
+<path d="M17.0001 2.5L33.9998 3.49546L33.9998 4.49546L17 3.49999L17.0001 2.5Z" fill="black" fill-opacity="0.28"/>
+<path d="M13 162C13 162 18.0926 154 25.5 154C32.9074 154 38 162 38 162" stroke="white" stroke-opacity="0.2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="16.5" cy="140.5" r="2.5" fill="white" fill-opacity="0.2"/>
+<circle cx="34.5" cy="140.5" r="2.5" fill="white" fill-opacity="0.2"/>
+</svg>
