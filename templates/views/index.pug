@@ -37,8 +37,9 @@ block content
 		else
 			form#ContactForm(method="post")
 				input(type="hidden", name="action", value="/")
+				//-.form-group(class=validationErrors.name ? "has-error" : null): 
 				input(type="text", name="name.first", value=formData["name.first"], placeholder="First Name", required)
 				input(type="text", name="name.last", value=formData["name.last"], placeholder="Last Name", required)
 				input(type="email", name="email", value=formData.email, placeholder="Email Address", required)
 				textarea(name="message", rows="5", placeholder="Please write your message here", required)= formData.message
-				div: button.btn(type="submit") Submit
+				button.btn(type="submit") Submit

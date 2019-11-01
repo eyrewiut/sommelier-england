@@ -1,4 +1,5 @@
 extends ../layouts/default
+include ../mixins/no-content
 
 mixin winner(competition)
 	ul.winners: each winner in winners
@@ -28,56 +29,38 @@ block content
 				if (winnerCount[0].winnerCount > 0)
 					+winner("Best Sommelier UK")
 				else 
-					article
-						.no-content
-							img(src="images/WineBottleEmpty.svg")
-							h2 We couldn't find any winners for this competition!
+					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#asi-certificate
 				h2.section-header= "ASI Certificate"
 				if (winnerCount[1].winnerCount > 0)
 					+winner("ASI Certificate")
 				else 
-					article
-						.no-content
-							img(src="images/WineBottleEmpty.svg")
-							h2 We couldn't find any winners for this competition!
+					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#world
 				h2.section-header= "World"
 				if (winnerCount[2].winnerCount > 0)
 					+winner(winner, "World")
 				else 
-					article
-						.no-content
-							img(src="images/WineBottleEmpty.svg")
-							h2 We couldn't find any winners for this competition!
+					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#europe
 				h2.section-header= "Europe"
 				if (winnerCount[3].winnerCount > 0)
 					+winner(winner, "europe")
 				else 
-					article
-						.no-content
-							img(src="images/WineBottleEmpty.svg")
-							h2 We couldn't find any winners for this competition!
+					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#americas
 				h2.section-header= "Americas"
 				if (winnerCount[4].winnerCount > 0)
 					+winner(winner, "Americas")
 				else 
-					article
-						.no-content
-							img(src="images/WineBottleEmpty.svg")
-							h2 We couldn't find any winners for this competition!
+					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#asia-oceana
 				h2.section-header= "Asia & Oceana"
 				if (winnerCount[5].winnerCount > 0)
 					each winner in winners
 						+winner(winner, "Asia & Oceana")
 				else 
-					article
-						.no-content
-							img(src="images/WineBottleEmpty.svg")
-							h2 We couldn't find any winners for this competition!
+					+no-content("Sorry, We couldn't find any winners for this competition.")
 
 block js
 	script.

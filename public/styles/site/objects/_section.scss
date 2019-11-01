@@ -28,11 +28,9 @@ section {
 			min-height: 300px;
 		}
 	}
-		/*Laptop*/
+	/*Laptop*/
 	@media screen and (min-width: 1200px) {
-		//margin: 100px auto;
 		&:first-of-type {
-			border: none;
 			.section-header { top: 190px; }
 		}
 	}
