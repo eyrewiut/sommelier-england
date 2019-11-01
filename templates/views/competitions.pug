@@ -1,72 +1,95 @@
 extends ../layouts/default
 
+mixin winner(competition)
+	ul.winners: each winner in winners
+		if (winner.competition == competition)
+				li
+					span= winner._.year.format("YYYY")
+					span= `${winner.name.first} ${winner.name.last}`
+
 block content
-	.header-image(style="background: url(/images/competitions_header.jpg)")
+	.header-image(style="background: url(/images/party.jpg)")
 	section
 		h2.section-header Competitions
-		p Here you can see winners for competitions organized or hosted by us.
+		p.section-description Here you can see winners for competitions organized or hosted by us.
 	hr.section-seperator
 	section
 		h2.section-header Previous winners
 		div.tabs-wrapper
 			ul.tabs
-				li: a(href="javascript:showTab('best-sommelier-uk')")= "Best Sommelier UK"
-				li: a(href="javascript:showTab('asi-certificate')")= "ASI Certificate"
-				li: a(href="javascript:showTab('world')")= "World"
-				li: a(href="javascript:showTab('europe')")= "Europe"
-				li: a(href="javascript:showTab('americas')")= "Americas"
-				li: a(href="javascript:showTab('asia-oceana')")= "Asia & Oceana"
+				li.tab.active(data-target="#best-sommelier-uk"): span= "Best Sommelier UK"
+				li.tab(data-target="#asi-certificate"): span= "ASI Certificate"
+				li.tab(data-target="#world"): span= "World"
+				li.tab(data-target="#europe"): span= "Europe"
+				li.tab(data-target="#americas"): span= "Americas"
+				li.tab(data-target="#asia-oceana"): span= "Asia & Oceana"
 			div.tab-content#best-sommelier-uk.active
 				h2.section-header= "Best Sommelier UK"
-				each winner in winners
-					if (winner.competition == "Best Sommelier UK" ? true : false)
-						ul.winners: li
-							span= winner._.year.format("YYYY")
-							span= `${winner.name.first} ${winner.name.last}`
-
+				if (winnerCount[0].winnerCount > 0)
+					+winner("Best Sommelier UK")
+				else 
+					article
+						.no-content
+							img(src="images/WineBottleEmpty.svg")
+							h2 We couldn't find any winners for this competition!
 			div.tab-content#asi-certificate
 				h2.section-header= "ASI Certificate"
-				each winner in winners
-					if (winner.competition == "ASI Certificate" ? true : false)
-						ul.winners: li
-							span= winner._.year.format("YYYY")
-							span= `${winner.name.first} ${winner.name.last}`
+				if (winnerCount[1].winnerCount > 0)
+					+winner("ASI Certificate")
+				else 
+					article
+						.no-content
+							img(src="images/WineBottleEmpty.svg")
+							h2 We couldn't find any winners for this competition!
 			div.tab-content#world
 				h2.section-header= "World"
-				each winner in winners
-					if (winner.competition == "World" ? true : false)
-						ul.winners: li
-							span= winner._.year.format("YYYY")
-							span= `${winner.name.first} ${winner.name.last}`
+				if (winnerCount[2].winnerCount > 0)
+					+winner(winner, "World")
+				else 
+					article
+						.no-content
+							img(src="images/WineBottleEmpty.svg")
+							h2 We couldn't find any winners for this competition!
 			div.tab-content#europe
 				h2.section-header= "Europe"
-				each winner in winners
-					if (winner.competition == "Europe" ? true : false)
-						ul.winners: li
-							span= winner._.year.format("YYYY")
-							span= `${winner.name.first} ${winner.name.last}`
+				if (winnerCount[3].winnerCount > 0)
+					+winner(winner, "europe")
+				else 
+					article
+						.no-content
+							img(src="images/WineBottleEmpty.svg")
+							h2 We couldn't find any winners for this competition!
 			div.tab-content#americas
 				h2.section-header= "Americas"
-				each winner in winners
-					if (winner.competition == "Americas" ? true : false)
-						ul.winners: li
-							span= winner._.year.format("YYYY")
-							span= `${winner.name.first} ${winner.name.last}`
+				if (winnerCount[4].winnerCount > 0)
+					+winner(winner, "Americas")
+				else 
+					article
+						.no-content
+							img(src="images/WineBottleEmpty.svg")
+							h2 We couldn't find any winners for this competition!
 			div.tab-content#asia-oceana
 				h2.section-header= "Asia & Oceana"
-				each winner in winners
-					if (winner.competition == "Asia & Oceana" ? true : false)
-						ul.winners: li
-							span= winner._.year.format("YYYY")
-							span= `${winner.name.first} ${winner.name.last}`
+				if (winnerCount[5].winnerCount > 0)
+					each winner in winners
+						+winner(winner, "Asia & Oceana")
+				else 
+					article
+						.no-content
+							img(src="images/WineBottleEmpty.svg")
+							h2 We couldn't find any winners for this competition!
 
 block js
 	script.
-		function showTab(tab) {
-			//Hide all tabs
-			$(".tab-content").each(function() {
+		$(".tab").click(function() {
+			/*Set the active class on the tab*/
+			$(".tab").each(function() {
 				$(this).removeClass("active")
 			});
-			//Display the new tab
-			$(`#${tab}`).addClass("active")
-		}
+			$(this).addClass("active");
+			/*Set the active tab-content*/
+			$(".tab-content").each(function() {
+				$(this).removeClass("active");
+			});
+			$($(this).data("target")).addClass("active");
+		})
