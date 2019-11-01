@@ -4,7 +4,7 @@ const keystone = require("keystone");
 keystone.init({
 	//Set project name and brand
 	"name": "National UK Sommelier Organisation",
-	"brand": "National UK Sommelier Organisation",
+	"brand": "Sommelier England",
 
 	//Generate sass files from css and set static directory
 	"sass": "public",
@@ -24,6 +24,13 @@ keystone.init({
 	"user model": "User",
 	"auth": true,
 	"auto update": true,
+
+	"cloudinary config": process.env.CLOUDINARY_URL,
+
+	"wysiwyg override toolbar": true,
+	"wysiwyg additional buttons": 
+	"formatselect, alignleft, aligncenter, alignright, alignjustify, bold, italic, underline, blockquote, link, bullist, numlist",
+	"wysiwyg additional plugins": "hr, wordcount, visualblocks, lists",
 });
 
 //Import database models
@@ -35,7 +42,8 @@ keystone.set("locals", {
 	env: keystone.get("env"),
 	utils: keystone.utils,
 	editable: keystone.content.editable,
-	brand: keystone.get("brand")
+	brand: "National UK Sommelier Organization",
+	description: "The National UK Sommelier Organisation is promoting aspiring individuals to join the Sommelier world across the UK."
 });
 
 //Load routes

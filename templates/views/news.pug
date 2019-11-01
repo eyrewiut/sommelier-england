@@ -1,0 +1,31 @@
+extends ../layouts/default
+
+mixin post(post)
+	article.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+			if post.content.image.exists
+				.post-image: img(src=post._.content.image.fill(400,280))
+			.post-content
+				h2.title= post.title
+				p.article-text= post._.content.short.crop(200)
+					if (post.content.short.length >= 200)
+						| ...
+				a.read-more(href=`/news/posts/${post.slug}/`) Read More..
+
+block content
+	.header-image(style="background: url(/images/bottles.jpg); background-position: bottom !important;")
+	section
+		h2.section-header News
+		p.section-description Check this page for the latest news and updates, we will post information on the winners of competitions, events and any other updates.
+		if (posts.results.length > 0)
+			.posts
+				each post in posts.results
+					+post(post)
+		else
+			.no-content
+				img(src="/images/WineBottleEmpty.svg")
+				h2 We couldn't find any posts!
+		//-if (posts.totalPages > 1)
+		.pagination: each page in posts.pages
+			a.btn(href="?news=" + page)= page
+				
+			

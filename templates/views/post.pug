@@ -1,0 +1,7 @@
+extends ../layouts/default
+
+block content
+	.header-image(style="background: url(" + (post.content.image.url || "/images/party.jpg") + ")")
+	section(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+		h2.section-header= post.title
+		!= post.content.extended || post.content.short

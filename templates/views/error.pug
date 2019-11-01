@@ -1,0 +1,10 @@
+extends ../layouts/default
+
+block content
+	.background-image(style="background: url(/images/bottles.jpg)")
+	section
+		article.no-content
+			img(src="/images/WineBottleError.svg")
+			h2.section-title= errTitle
+			p= errMessage
+			a.btn(href="/") Back to Homepage
