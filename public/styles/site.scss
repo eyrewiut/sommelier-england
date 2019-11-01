@@ -1,4 +1,15 @@
 @import "https://fonts.googleapis.com/css?family=Playfair+Display&display=swap";
 
-// Import site style
-@import "site/layout";
+/*Import Components*/
+@import "site/components/navigation";
+@import "site/components/posts";
+@import "site/components/tabs";
+@import "site/components/form";
+/*Import Objects*/
+@import "site/objects/event";
+@import "site/objects/winners";
+@import "site/objects/section";
+@import "site/objects/footer";
+@import "site/objects/button";
+/*Other Styles*/
+@import "site/app";

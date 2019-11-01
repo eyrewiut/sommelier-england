@@ -1,0 +1,13 @@
+footer {
+	text-align: center;
+	margin: 160px 0 0 0;
+	nav {
+		.nav-inner {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+	}
+	#copyright {
+		bottom: 5px;
+	}
+}

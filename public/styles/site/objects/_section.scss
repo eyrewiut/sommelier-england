@@ -1,0 +1,111 @@
+/*Section styling*/
+section {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border-bottom: 1px solid #e6e6e6;
+	//text-align: center;
+	background: #fff;
+	padding: 50px 5px;
+	//z-index: 0 !important;
+
+	/*Set specific styles for the first section*/
+	&:first-of-type {
+		border-top: 1px solid #e6e6e6;
+	}
+
+	p, h2, h3 {
+		text-align: center;
+	}
+
+	@media screen and (min-width: 475px) {
+		padding: 50px;
+	}
+		
+	/*Iphone 8 and similar*/
+	@media screen and (min-width: 375px) {
+		&:first-of-type {
+			min-height: 300px;
+		}
+	}
+		/*Laptop*/
+	@media screen and (min-width: 1200px) {
+		//margin: 100px auto;
+		&:first-of-type {
+			border: none;
+			.section-header { top: 190px; }
+		}
+	}
+	/*Desktop*/
+	@media screen and (min-width: 1800px) {
+		padding: 130px;
+		margin: 0 auto;
+		width: 1520px;
+		min-height: 640px;
+		border: none;
+		p {
+			font-size: 18px;
+			margin: 0 100px;
+		}
+		&:first-of-type {
+			margin: 130px auto 0 auto;
+			min-height: 640px;
+			.section-header {
+				position: initial;
+				left: unset;
+				right: unset;
+				top: unset;
+				color: #000;
+				&:after {
+					max-width: initial;
+					background-color: #000;
+				}
+			}
+			p.section-description {
+				margin: 30px 200px;
+			}
+		}
+	}
+}
+
+/*Title in each section*/
+.section-header {
+	text-align: center;
+	font-size: 24px;
+	font-weight: 300;
+	/*Underline*/
+	&::after {
+		content: "";
+		display: block;
+		position: relative;
+		height: 1px;
+		min-width: 100px;
+		max-width: 340px;
+		margin: 0 auto;
+
+		background: #000;
+	}
+	@media screen and (min-width: 1800px) {
+		
+		&::after {
+			width: 347px;
+		}
+	}
+}
+
+.section-seperator {
+	display: none; 
+	height: 100px;
+	width: 0;
+	border: 1px #000 dashed;
+	margin-top: 0;
+	margin-bottom: 0;
+	@media screen and (min-width: 1800px) {
+		display: block;
+	}
+}
+
+.section-description {
+	margin: 20px;
+	text-align: center;
+}

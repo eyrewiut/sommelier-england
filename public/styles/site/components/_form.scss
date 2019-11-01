@@ -1,0 +1,24 @@
+/*Form*/
+form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 640px;
+	justify-content: center;
+	* {
+		margin: 5px;
+		font-family: "Playfair Display", sans-serif;
+		font-size: 18px;
+	}
+	input, textarea {
+		flex-grow: 1;
+		padding: 8px 10px;
+		background: #f4f4f4;
+		font-weight: bold;
+		border: 2px solid #DADADA;
+		border-radius: 3px;
+	}
+	.form-group {
+		display: flex;
+	}
+}
