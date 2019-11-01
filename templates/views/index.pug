@@ -4,7 +4,7 @@ block content
 	.header-image(style="background: url(/images/grapes.jpg)")
 	section
 		h2.section-header Home
-		p Our organisation is promoting young people and other aspiring people who want to join the Sommelier world, welcome to our website.
+		p.section-description Our organisation is promoting young people and other aspiring people who want to join the Sommelier world, welcome to our website.
 	hr.section-seperator
 	section
 		h2.section-header Who are we?
@@ -37,9 +37,8 @@ block content
 		else
 			form#ContactForm(method="post")
 				input(type="hidden", name="action", value="/")
-				.form-group(class=validationErrors.name ? "has-error" : null)
-					input.form-control(type="text", name="name.first", value=formData["name.first"], placeholder="First Name", required)
-					input.form-control(type="text", name="name.last", value=formData["name.last"], placeholder="Last Name", required)
-				.form-group: input(type="email", name="email", value=formData.email, placeholder="Email Address", required)
-				.form-group: textarea(name="message", rows="5", placeholder="Please write your message here", required)= formData.message
-				.form-group: button.btn(type="submit") Submit
+				input(type="text", name="name.first", value=formData["name.first"], placeholder="First Name", required)
+				input(type="text", name="name.last", value=formData["name.last"], placeholder="Last Name", required)
+				input(type="email", name="email", value=formData.email, placeholder="Email Address", required)
+				textarea(name="message", rows="5", placeholder="Please write your message here", required)= formData.message
+				div: button.btn(type="submit") Submit

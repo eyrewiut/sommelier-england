@@ -1,0 +1,23 @@
+extends ../layouts/default
+
+mixin event(event)
+	.event(data-ks-editable=editable(user, { list: "Event", id: event.id }))
+		h2.title= event.name
+		h2.date= event._.date.format("DD/MM/YYYY")
+		span.location= event.location.addrName || event.location.full
+
+block content
+	.header-image(style="background: url(/images/wine-cellar.jpg); background-position: center !important;")
+	section
+		h2.section-header Events
+		p.section-descripton 
+			| Here you can find events hosted or organized by the UK Sommelier Family, some events may be via invite only.
+			| If an event rerquires registration, you will be able to register for it here via a form.
+	each yeargroup in events
+		hr.section-seperator
+		section
+			h2.section-header= yeargroup.year
+			each event in yeargroup
+				+event(event)
+
+		
