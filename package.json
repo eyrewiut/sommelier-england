@@ -15,7 +15,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node keystonejs"
+    "start": "node keystone",
+    "dev": "MONGO_URI=mongodb://localhost/sommelier nodemon keystone"
   },
   "keywords": [
     "keystonejs"

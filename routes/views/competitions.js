@@ -1,40 +1,39 @@
 var Keystone = require("keystone");
+var _ = require("lodash");
 var Winner = Keystone.list("Winner");
 
 exports = module.exports = function(req, res) {
 	var view = new Keystone.View(req, res);
 	var locals = res.locals;
 
+	//Add page properties to locals
 	locals.section = "competitions";
 	locals.pageTitle = "Competitions";
-	locals.winnerCount = [];
 
+	//Called whenever the page requested
+	locals.winnerCount = [];
 	view.on("init", function(next) {
-		var competitions = [
-			{ name: "Best Sommelier UK", },
-			{ name: "ASI Certificate", },
-			{ name: "World", },
-			{ name: "Europe", },
-			{ name: "Americas", },
-			{ name: "Asia & Oceana", }, 
-		];
-		Winner.model.find().exec(function(err, results) {
+		//Find all winners from the database
+		Winner.model.find().sort("-year -vintage.listPriority").exec(function(err, results) {
 			if (err) {
 				next(err);
 			}
-			competitions.forEach(function(competition) {
-				competition.winnerCount = 0; //Set the winnerCount to 0
-				results.forEach(function(result) {
-					if (result.competition == competition.name) {
-						competition.winnerCount++; //Add 1 to the winnerCount
-					}
-				});
+			var competitions = ["best_sommelier_uk","asi_certificate","world","europe","americas","asia_oceana"];
+			//put the results into groups and ensure add empty groups if there is no results for a group
+			var groups = _.groupBy(results, "competition"); 
+			competitions.forEach(competition => {
+				if (!Object.prototype.hasOwnProperty.call(groups, competition)) {
+					Object.defineProperty(groups, competition, {
+						value: [],
+						writable: true
+					});
+				}
 			});
-			locals.winnerCount = competitions;
+			//Add the groups to locals
+			locals.competitions = groups;
 			next(err);
 		});
 	});
 
-	view.query("winners", Winner.model.find().sort("-year"));
-	view.render("competitions");
+	view.render("competitions"); //Render the template into html
 };

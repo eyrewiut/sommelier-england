@@ -10,6 +10,7 @@ ul.winners {
 		display: grid;
 		grid-template-columns: auto auto;
 		grid-template-rows: auto auto;
+		grid-template-areas: "year name name" "vintage vintage vintage";
 		max-width: 400px;
 		margin-bottom: 10px;
 		span {
@@ -17,9 +18,46 @@ ul.winners {
 			align-self: end;
 			&:nth-of-type(1) {
 				font-size: 24px;
+				grid-area: year;
 			}
 			&:nth-of-type(2) {
 				text-align: right;
+				grid-area: name;
+			}
+			&:nth-of-type(3) {
+				text-align: right;
+				grid-area: vintage;
+				font-size: 20px;
+				font-weight: bold;
+				&.gold_platinum {
+					background: #2ddbff;
+					background: -moz-linear-gradient(38deg, rgba(1,255,218,1) 0%, rgba(45,219,255,1) 100%);
+					background: -webkit-linear-gradient(38deg, rgba(1,255,218,1) 0%, rgba(45,219,255,1) 100%);
+					background: linear-gradient(38deg, rgba(1,255,218,1) 0%, rgba(45,219,255,1) 100%);
+				}
+				&.gold {
+					background: #ffe294;
+					background: -moz-linear-gradient(38deg, #ffc400 0%, #ffe294 100%);
+					background: -webkit-linear-gradient(38deg, #ffc400 0%, #ffe294 100%);
+					background: linear-gradient(38deg, #ffc400 0%, #ffe294 100%);
+				}
+				&.silver {
+					background: rgb(147,147,147);
+					background: -moz-linear-gradient(38deg, rgba(147,147,147,1) 0%, rgba(215,215,215,1) 100%);
+					background: -webkit-linear-gradient(38deg, rgba(147,147,147,1) 0%, rgba(215,215,215,1) 100%);
+					background: linear-gradient(38deg, rgba(147,147,147,1) 0%, rgba(215,215,215,1) 100%);
+				}
+				&.bronze {
+					background: rgb(140,105,39);
+					background: -moz-linear-gradient(38deg, rgba(140,105,39,1) 0%, rgba(228,175,27,1) 100%);
+					background: -webkit-linear-gradient(38deg, rgba(140,105,39,1) 0%, rgba(228,175,27,1) 100%);
+					background: linear-gradient(38deg, rgba(140,105,39,1) 0%, rgba(228,175,27,1) 100%);
+				}
+				&.gold_platinum, &.gold, &.silver, &.bronze {
+					background-clip: text;
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+				}
 			}
 		}
 		&::after {
@@ -29,12 +67,8 @@ ul.winners {
 			width: 100%;
 			margin: 0 auto;
 			background: #000;
-			grid-column: span 2;
-		}
-	}
-	@media screen and (min-width: 768px) {
-		li span {
-			font-weight: bold;
+			grid-column: 1 /span 3;
+			grid-row: 2;
 		}
 	}
 	@media screen and (min-width: 1200px) {

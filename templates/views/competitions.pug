@@ -2,11 +2,12 @@ extends ../layouts/default
 include ../mixins/no-content
 
 mixin winner(competition)
-	ul.winners: each winner in winners
-		if (winner.competition == competition)
-				li
-					span= winner._.year.format("YYYY")
-					span= `${winner.name.first} ${winner.name.last}`
+	ul.winners: each winner in competition
+			li
+				span= winner._.year.format("YYYY")
+				span= `${winner.name.first} ${winner.name.last}`
+				if (winner.competition == "asi_certificate")
+					span(class=(winner.vintage ? winner.vintage : null))= winner.vintageLabel
 
 block content
 	.header-image(style="background: url(/images/party.jpg)")
@@ -19,48 +20,48 @@ block content
 		div.tabs-wrapper
 			ul.tabs
 				li.tab.active(data-target="#best-sommelier-uk"): span= "Best Sommelier UK"
-				li.tab(data-target="#asi-certificate"): span= "ASI Certificate"
+				li.tab(data-target="#asi_certificate"): span= "ASI Certificate"
 				li.tab(data-target="#world"): span= "World"
 				li.tab(data-target="#europe"): span= "Europe"
 				li.tab(data-target="#americas"): span= "Americas"
-				li.tab(data-target="#asia-oceana"): span= "Asia & Oceana"
+				li.tab(data-target="#asia_oceana"): span= "Asia & Oceana"
 			div.tab-content#best-sommelier-uk.active
 				h2.section-header= "Best Sommelier UK"
-				if (winnerCount[0].winnerCount > 0)
-					+winner("Best Sommelier UK")
+				if (competitions.best_sommelier_uk.length > 0)
+					+winner(competitions.best_sommelier_uk)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
-			div.tab-content#asi-certificate
+			div.tab-content#asi_certificate
 				h2.section-header= "ASI Certificate"
-				if (winnerCount[1].winnerCount > 0)
-					+winner("ASI Certificate")
+				if (competitions.asi_certificate.length > 0)
+					+winner(competitions.asi_certificate)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#world
-				h2.section-header= "World"
-				if (winnerCount[2].winnerCount > 0)
-					+winner(winner, "World")
+				h2.section-header= "world"
+				if (competitions.world.length > 0)
+					+winner(competitions.world)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#europe
 				h2.section-header= "Europe"
-				if (winnerCount[3].winnerCount > 0)
-					+winner(winner, "europe")
+				if (competitions.europe.length > 0)
+					+winner(competitions.europe)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#americas
 				h2.section-header= "Americas"
-				if (winnerCount[4].winnerCount > 0)
-					+winner(winner, "Americas")
+				if (competitions.americas.length > 0)
+					+winner(competitions.americas)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
-			div.tab-content#asia-oceana
+			div.tab-content#asia_oceana
 				h2.section-header= "Asia & Oceana"
-				if (winnerCount[5].winnerCount > 0)
-					each winner in winners
-						+winner(winner, "Asia & Oceana")
+				if (competitions.asia_oceana.length > 0)
+					+winner(competitions.asia_oceana)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
+
 
 block js
 	script.
