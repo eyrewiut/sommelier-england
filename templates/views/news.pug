@@ -3,7 +3,11 @@ extends ../layouts/default
 mixin post(post)
 	article.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
 			if post.content.image.exists
-				.post-image: img(src=post._.content.image.fill(400,280))
+				a(href=`/news/posts/${post.slug}/`)
+					.post-image: img(src=post._.content.image.fill(400,280))
+			else
+				a(href=`/news/posts/${post.slug}/`)
+					.post-image: img(src="/images/grapes.jpg")
 			.post-content
 				h2.title= post.title
 				p.article-text= post._.content.short.crop(200)
