@@ -6,8 +6,8 @@ mixin winner(competition)
 			li
 				span= winner._.year.format("YYYY")
 				span= `${winner.name.first} ${winner.name.last}`
-				if (winner.competition == "asi_certificate")
-					span(class=(winner.vintage ? winner.vintage : null))= winner.vintageLabel
+				if (winner.country || winner.vintage || winner.label)
+					span= winner.country || winner.vintage || winner.label
 
 block content
 	.header-image(style="background: url(/images/party.jpg)")
@@ -27,38 +27,38 @@ block content
 				li.tab(data-target="#asia_oceana"): span= "Asia & Oceana"
 			div.tab-content#best-sommelier-uk.active
 				h2.section-header= "Best Sommelier UK"
-				if (competitions.best_sommelier_uk.length > 0)
-					+winner(competitions.best_sommelier_uk)
+				if (best_sommelier_uk.length > 0)
+					+winner(best_sommelier_uk)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#asi_certificate
 				h2.section-header= "ASI Certificate"
-				if (competitions.asi_certificate.length > 0)
-					+winner(competitions.asi_certificate)
+				if (asi_certificate.length > 0)
+					+winner(asi_certificate)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#world
 				h2.section-header= "world"
-				if (competitions.world.length > 0)
-					+winner(competitions.world)
+				if (world.length > 0)
+					+winner(world)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#europe
 				h2.section-header= "Europe"
-				if (competitions.europe.length > 0)
-					+winner(competitions.europe)
+				if (europe.length > 0)
+					+winner(europe)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#americas
 				h2.section-header= "Americas"
-				if (competitions.americas.length > 0)
-					+winner(competitions.americas)
+				if (americas.length > 0)
+					+winner(americas)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 			div.tab-content#asia_oceana
 				h2.section-header= "Asia & Oceana"
-				if (competitions.asia_oceana.length > 0)
-					+winner(competitions.asia_oceana)
+				if (asia_oceana.length > 0)
+					+winner(asia_oceana)
 				else 
 					+no-content("Sorry, We couldn't find any winners for this competition.")
 

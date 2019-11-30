@@ -33,8 +33,17 @@ keystone.init({
 	"wysiwyg additional plugins": "hr, wordcount, visualblocks, lists",
 });
 
+
 //Import database models
 keystone.import("models");
+
+keystone.set("nav", {
+	"winners": ["BestSommelierUkWinner", "AsiChampion", "EuropeWinner", "WorldWinner", "AmericasWinner", "AsiaOceanaWinner"],
+	"users": "users",
+	"posts": "posts",
+	"enquiries": "enquiries",
+	"events": "events",
+});
 
 //Setup common locals for the templates (add request-unique locals to middleware.js)
 keystone.set("locals", {
